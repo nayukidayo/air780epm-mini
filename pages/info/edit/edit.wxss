@@ -1,0 +1,16 @@
+page {
+  --td-input-bg-color: #eee;
+  --td-input-vertical-padding: 24rpx;
+}
+
+.b {
+  margin-top: 40rpx;
+  padding: 0 20rpx;
+}
+
+.t {
+  padding: 20rpx 32rpx;
+  color: #d54941;
+  font-size: 24rpx;
+  font-weight: bold;
+}

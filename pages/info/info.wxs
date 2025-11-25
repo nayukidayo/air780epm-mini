@@ -1,0 +1,20 @@
+function interval(str) {
+  if (!str) return 24
+  var obj = JSON.parse(str)
+  return obj.interval
+}
+
+function updated(str) {
+  str = str.replace(' ', 'T').slice(0, -5) // 兼容iOS
+  var date = getDate(str)
+  date.setHours(date.getHours() + 8 * 2)
+  str = date.toISOString()
+  var ymd = str.slice(0, 10)
+  var hms = str.slice(11, 19)
+  return ymd + ' ' + hms
+}
+
+module.exports = {
+  interval: interval,
+  updated: updated,
+}

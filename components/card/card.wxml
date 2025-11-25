@@ -1,0 +1,36 @@
+<wxs src="./card.wxs" module="_" />
+
+<view class="q" bind:tap="onTap" mark:id="{{value.id}}">
+  <view class="a">
+    <view class="s">{{value.name}}</view>
+    <t-tag wx:if="{{_.isOk(value.data_updated, value.config)}}" variant="light" theme="success">正常</t-tag>
+    <t-tag wx:else variant="light" theme="danger">异常</t-tag>
+  </view>
+  <view class="t m">{{value.imei}}</view>
+  <view class="w">
+    <view class="d">
+      <view class="e">
+        <image class="f" src="/images/temp.svg" mode="widthFix"></image>
+      </view>
+      <view class="r">
+        <view class="t">温度</view>
+        <view class="h">
+          <text>{{value.temp}}</text>
+          <text> ℃</text>
+        </view>
+      </view>
+    </view>
+    <view class="d">
+      <view class="e">
+        <image class="f" src="/images/hum.svg" mode="widthFix"></image>
+      </view>
+      <view class="r">
+        <view class="t">湿度</view>
+        <view class="h">
+          <text>{{value.hum}}</text>
+          <text> %</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

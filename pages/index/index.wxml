@@ -1,0 +1,19 @@
+<view class="q">
+  <t-search class="s" model:value="{{search}}" placeholder="搜索设备名称" bind:submit="onSearch" bind:clear="onSearch" />
+  <t-icon name="scan" size="48rpx" color="#1d44a9" bind:click="onScanClick" />
+</view>
+<t-pull-down-refresh lower-threshold="{{50}}" value="{{isRefresh}}" bind:refresh="onRefresh"
+  bind:scrolltolower="onLower">
+  <t-empty wx:if="{{!devices.length}}" class="t" icon="folder-search">
+    <view slot="description">
+      <view>暂无数据</view>
+      <view>请尝试切换筛选条件或重新输入关键词</view>
+    </view>
+  </t-empty>
+  <view wx:else class="w">
+    <my-card wx:for="{{devices}}" wx:key="id" value="{{item}}"></my-card>
+    <view class="r" wx:if="{{isLower}}">
+      <t-loading theme="dots" size="80rpx" />
+    </view>
+  </view>
+</t-pull-down-refresh>

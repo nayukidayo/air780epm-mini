@@ -1,0 +1,8 @@
+page {
+  --td-cell-vertical-padding: 16rpx;
+}
+
+.b {
+  margin-top: 60rpx;
+  padding: 0 20rpx;
+}

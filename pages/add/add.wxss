@@ -1,0 +1,39 @@
+.a {
+  display: inline-flex;
+}
+
+.a::after {
+  content: '*';
+  color: red;
+  font-size: 32rpx;
+  margin-left: 4rpx;
+}
+
+.s {
+  display: flex;
+  align-items: center;
+}
+
+.f {
+  width: 1px;
+  height: 24px;
+  background-color: #f3f3f3;
+  margin-right: 16px;
+}
+
+.g {
+  color: var(--td-brand-color);
+  font-size: 32rpx;
+}
+
+.b {
+  margin-top: 40rpx;
+  padding: 0 20rpx;
+}
+
+.t {
+  padding: 20rpx 32rpx;
+  color: #d54941;
+  font-size: 24rpx;
+  font-weight: bold;
+}

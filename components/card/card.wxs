@@ -1,0 +1,13 @@
+function isOk(updated, config) {
+  if (!updated || !config) return false
+  updated = updated.replace(' ', 'T').slice(0, -5) // 兼容iOS
+  var date = getDate(updated)
+  date.setHours(date.getHours() + 8)
+  var diff = (getDate() - date) / 1000 / 60 / 60
+  var interval = JSON.parse(config).interval
+  return diff < interval + 1
+}
+
+module.exports = {
+  isOk: isOk,
+}
