@@ -7,10 +7,12 @@ page {
   align-items: center;
   gap: 32rpx;
   padding: 0 32rpx 20rpx;
+  background-color: var(--td-bg-color-container);
 }
 
 .s {
   flex-grow: 1;
+  --td-search-bg-color: var(--td-bg-color-page);
 }
 
 .w {
@@ -25,6 +27,6 @@ page {
   padding-top: 20vh;
 }
 
-.r {
-  text-align: center;
+.space {
+  height: 50vh;
 }

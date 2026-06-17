@@ -1,19 +1,20 @@
 <form bindsubmit="onSubmit">
-  <t-input name="name" placeholder="请输入设备名称">
-    <view slot="label" class="a">设备名称</view>
+  <t-input name="name" placeholder="请输入设备名称" maxlength="{{50}}">
+    <view slot="label" class="star">设备名称</view>
   </t-input>
-  <t-input name="imei" readonly value="{{imei}}">
-    <view slot="label" class="a">设备IMEI</view>
+  <t-input name="imei" value="{{imei}}" readonly>
+    <view slot="label">设备IMEI</view>
   </t-input>
-  <t-input readonly value="温湿度传感器">
-    <view slot="label" class="a">设备类型</view>
+  <t-input value="温湿度传感器" readonly>
+    <view slot="label">设备类型</view>
   </t-input>
-  <t-input name="interval" suffix="小时" type="number" value="24" placeholder="请输入采集间隔">
-    <view slot="label" class="a">采集间隔</view>
+  <t-input name="interval" placeholder="请输入采集间隔" suffix="小时" type="number" maxlength="{{5}}">
+    <view slot="label" class="star">采集间隔</view>
   </t-input>
-  <t-input name="location" label="安装位置" placeholder="请输入安装位置" />
-  <view class="b">
+  <t-input name="location" placeholder="请输入安装位置" maxlength="{{50}}">
+    <view slot="label">安装位置</view>
+  </t-input>
+  <view class="foot">
     <t-button theme="primary" type="submit" block>绑定设备</t-button>
   </view>
 </form>
-<view class="t">{{tips}}</view>

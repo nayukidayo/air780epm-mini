@@ -1,15 +1,15 @@
 {
   "pages": [
+    "pages/launch/launch",
     "pages/index/index",
     "pages/add/add",
-    "pages/info/info",
-    "pages/info/edit/edit"
+    "pages/view/view",
+    "pages/measure/measure"
   ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarBackgroundColor": "#ffffff"
   },
-  "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents"
 }

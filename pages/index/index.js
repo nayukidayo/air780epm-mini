@@ -1,87 +1,80 @@
-const app = getApp()
+import * as request from '../../utils/request'
 
 Page({
   data: {
-    search: '',
+    records: [],
     isRefresh: false,
     isLower: false,
-    devices: [],
+    search: '',
   },
-  prop: {
-    pageNumber: 1,
-    pageSize: 30,
-    hasNextPage: false,
-    isScanBack: false,
-  },
+
   onLoad() {
-    app.onLoginSuccess(() => this.onRefresh())
+    this._page = 1
+    this._pageSize = 30
+    this._hasNextPage = false
+    this._isScanBack = false
+    wx.hideHomeButton()
   },
-  onShow() {
-    if (this.prop.isScanBack) {
-      this.prop.isScanBack = false
+
+  async onShow() {
+    if (this._isScanBack) {
+      this._isScanBack = false
       return
     }
-    this.onRefresh()
+    this._page = 1
+    const records = await this.loadPage()
+    this.setData({ records })
   },
+
+  async onRefresh() {
+    this._page = 1
+    this.setData({ isRefresh: true })
+    const records = await this.loadPage()
+    this.setData({ isRefresh: false, records })
+  },
+
+  async onLower() {
+    if (!this._hasNextPage) return
+    this._page++
+    this.setData({ isLower: true })
+    const records = await this.loadPage()
+    this.setData({ isLower: false, records: this.data.records.concat(records) })
+  },
+
+  async loadPage() {
+    try {
+      const data = { page: this._page, page_size: this._pageSize, name: this.data.search }
+      const records = await request.get('/api/wen/device', data)
+      this._hasNextPage = data.length === this._pageSize
+      return records
+    } catch (err) {
+      console.log(err)
+      wx.showToast({ icon: 'none', title: '加载失败' })
+      return []
+    }
+  },
+
   onScanClick() {
-    this.prop.isScanBack = true
+    this._isScanBack = true
     wx.scanCode({
       onlyFromCamera: true,
       scanType: ['qrCode'],
       success: res => {
         if (res.result.length !== 15) {
-          wx.showToast({ title: '未知的设备', icon: 'error', duration: 2000 })
+          wx.showToast({ icon: 'none', title: '未知的设备' })
           return
         }
+        this._isScanBack = false
         wx.navigateTo({ url: `/pages/add/add?imei=${res.result}` })
       },
-      fail: () => {
-        wx.showToast({ title: '解析二维码失败', icon: 'error', duration: 2000 })
+      fail: (err) => {
+        if (err.errMsg === 'scanCode:fail cancel') return
+        wx.showToast({ icon: 'none', title: '解析二维码失败' })
       }
     })
   },
+
   onSearch() {
-    this.onRefresh()
-  },
-  onRefresh() {
-    this.prop.pageNumber = 1
-    this.listDevice('isRefresh', devices => {
-      this.setData({ devices })
-    })
-  },
-  onLower() {
-    this.prop.pageNumber++
-    this.listDevice('isLower', devices => {
-      this.setData({ devices: this.data.devices.concat(devices) })
-    })
-  },
-  listDevice(loading, callback) {
-    const user = app.globalData.user
-    if (!user) return
-    this.setData({ [loading]: true })
-    wx.request({
-      url: `${app.globalData.pb}/api/collections/devices/records`,
-      data: {
-        page: this.prop.pageNumber,
-        perPage: this.prop.pageSize,
-        filter: `(name~'${this.data.search}' && user='${user.id}')`,
-        sort: '-created',
-        fields: 'id,name,imei,temp,hum,data_updated,config',
-        skipTotal: 1,
-      },
-      success: res => {
-        if (res.statusCode !== 200) {
-          wx.showToast({ title: '加载失败', icon: 'error' })
-          return
-        }
-        this.prop.hasNextPage = res.data.items.length === this.prop.pageSize
-        callback(res.data.items)
-      },
-      fail: err => {
-        wx.showToast({ title: '加载失败', icon: 'error' })
-        console.log(err.errMsg)
-      },
-      complete: () => this.setData({ [loading]: false })
-    })
+    this.onShow()
   },
 })

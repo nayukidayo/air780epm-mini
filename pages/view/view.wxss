@@ -1,0 +1,30 @@
+page {
+  --td-cell-vertical-padding: 18rpx;
+  --td-input-vertical-padding: 24rpx;
+}
+
+.group {
+  margin-top: 40rpx;
+}
+
+.space {
+  height: 50vh;
+}
+
+.foot {
+  position: fixed;
+  inset: auto 0 0;
+  padding: 1rem 1rem 2.5rem;
+  z-index: 2;
+}
+
+.container {
+  height: 100vh;
+  color: var(--td-font-gray-1);
+  background-color: var(--td-bg-color-page);
+  overflow: hidden
+}
+
+.edit {
+  margin-top: 40rpx;
+}

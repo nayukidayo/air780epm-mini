@@ -1,3 +1,13 @@
 page {
-  --td-brand-color: #1d44a9;
+  --td-brand-color: #0052d9;
+  --td-bg-color-page: #f1f2f4;
+  --td-bg-color-container: #ffffff;
+  --td-font-gray-1: rgba(0, 0, 0, .9);
+  --td-font-gray-2: rgba(0, 0, 0, .6);
+  --td-font-gray-3: rgba(0, 0, 0, .4);
+  --td-font-family: pingfang sc, microsoft yahei, arial regular;
+  font-size: calc(100vw / 375 * 16);
+  font-family: var(--td-font-family);
+  color: var(--td-font-gray-1);
+  background-color: var(--td-bg-color-page);
 }

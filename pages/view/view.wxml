@@ -1,0 +1,44 @@
+<wxs src="./view.wxs" module="_" />
+
+<block wx:if="{{record}}">
+  <t-cell-group>
+    <t-cell title="设备名称" hover arrow note="{{record.name}}" bind:click="cellClick" mark:name="name" />
+    <t-cell title="设备IMEI" note="{{record.imei}}" />
+    <t-cell title="设备类型" note="温湿度传感器" />
+    <t-cell title="采集间隔" hover arrow note="{{record.config.interval}} 小时" bind:click="cellClick" mark:name="interval" />
+    <t-cell title="安装位置" hover arrow note="{{record.location}}" bind:click="cellClick" mark:name="location" />
+  </t-cell-group>
+  <t-cell-group class="group">
+    <t-cell title="原始温度" note="{{record.data?(record.data.temp+' ℃'):'N/A'}}" />
+    <t-cell title="修正值" hover arrow note="{{record.config.temp_offset}}" bind:click="cellClick" mark:name="temp_offset" />
+  </t-cell-group>
+  <t-cell-group class="group">
+    <t-cell title="原始湿度" note="{{record.data?(record.data.hum+' %'):'N/A'}}" />
+    <t-cell title="修正值" hover arrow note="{{record.config.hum_offset}}" bind:click="cellClick" mark:name="hum_offset" />
+  </t-cell-group>
+  <t-cell-group class="group">
+    <t-cell title="原始电压" note="{{record.data?(record.data.vbat+' V'):'N/A'}}" />
+    <t-cell title="修正值" hover arrow note="{{record.config.vbat_offset}}" bind:click="cellClick" mark:name="vbat_offset" />
+  </t-cell-group>
+  <t-cell-group class="group">
+    <t-cell title="采集时间" note="{{record.data_updated?_.toLocal(record.data_updated):'N/A'}}" />
+  </t-cell-group>
+  <t-cell-group class="group">
+    <t-cell title="历史数据" hover arrow bind:click="historyClick" />
+  </t-cell-group>
+  <view class="space"></view>
+  <view class="foot">
+    <t-button theme="danger" block bind:tap="unbind">解绑设备</t-button>
+  </view>
+</block>
+
+<page-container show="{{visible}}" bind:beforeenter="beforeenter" bind:beforeleave="beforeleave">
+  <view class="container">
+    <view class="edit">
+      <t-input maxlength="{{50}}" type="{{editType}}" value="{{editValue}}" bind:change="editChange" clearable bind:clear="editClear" />
+    </view>
+    <view class="foot">
+      <t-button theme="primary" block bind:tap="tapSave">保存</t-button>
+    </view>
+  </view>
+</page-container>

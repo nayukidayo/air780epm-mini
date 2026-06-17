@@ -1,12 +1,11 @@
 {
   "disableScroll": true,
-  "navigationBarTitleText": "设备",
+  "navigationBarTitleText": "皓米智联",
   "usingComponents": {
     "t-icon": "tdesign-miniprogram/icon/icon",
     "t-search": "tdesign-miniprogram/search/search",
     "t-pull-down-refresh": "tdesign-miniprogram/pull-down-refresh/pull-down-refresh",
     "t-empty": "tdesign-miniprogram/empty/empty",
-    "t-loading": "tdesign-miniprogram/loading/loading",
     "my-card": "../../components/card/card"
   }
 }
