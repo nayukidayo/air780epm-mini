@@ -35,7 +35,7 @@
 <page-container show="{{visible}}" bind:beforeenter="beforeenter" bind:beforeleave="beforeleave">
   <view class="container">
     <view class="edit">
-      <t-input maxlength="{{50}}" type="{{editType}}" value="{{editValue}}" bind:change="editChange" clearable bind:clear="editClear" />
+      <t-input maxlength="{{50}}" value="{{editValue}}" bind:change="editChange" clearable bind:clear="editClear" />
     </view>
     <view class="foot">
       <t-button theme="primary" block bind:tap="tapSave">保存</t-button>

@@ -5,7 +5,6 @@ Page({
     record: null,
     visible: false,
     editName: '',
-    editType: 'text',
     editValue: '',
   },
 
@@ -32,8 +31,7 @@ Page({
     const name = e.mark.name
     const record = this.data.record
     const value = record[name] !== undefined ? record[name] : record.config[name].toString()
-    const type = record[name] !== undefined ? 'text' : 'number'
-    this.setData({ visible: true, editName: e.mark.name, editValue: value, editType: type })
+    this.setData({ visible: true, editName: e.mark.name, editValue: value })
   },
 
   beforeenter() {
