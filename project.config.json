@@ -2,7 +2,12 @@
   "compileType": "miniprogram",
   "libVersion": "trial",
   "packOptions": {
-    "ignore": [],
+    "ignore": [
+      {
+        "type": "file",
+        "value": "miniprogram_npm/tdesign-miniprogram/.wechatide.ib.json"
+      }
+    ],
     "include": []
   },
   "setting": {

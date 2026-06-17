@@ -6,6 +6,7 @@ Page({
   },
 
   onLoad({ id }) {
-    this.setData({ url: `${origin}?device_id=${id}` })
+    const token = wx.$global.token
+    this.setData({ url: `${origin}?device_id=${id}&token=${token}` })
   }
 })
